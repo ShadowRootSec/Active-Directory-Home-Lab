@@ -13,15 +13,31 @@ To replicate this lab, you will need the following software. Please download the
 *   **Server OS:** [Windows Server 2022 Evaluation ISO (Microsoft Official)](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022)
 *   **Client OS:** [Windows 10 Enterprise Evaluation (Microsoft Official)](https://www.microsoft.com/en-us/evalcenter/download-windows-10-enterprise)
 
-## 🛠️ Implementation Steps
-1.  **VM Provisioning:** Created a VM with 4GB RAM and a 100GB disk. 
-    *   *Pro-Tip:* We used **"Dynamically Expanding Disk"** (Split into multiple files) so it only takes up actual storage on the host, not the full 100GB upfront.
-2.  **OS Installation:** Encountered the infamous VMware "Easy Install" license bug. 
-    *   *Fix:* Bypassed it by selecting "I will install the OS later," manually attaching the ISO, and selecting `Datacenter Evaluation (Desktop Experience)`.
-3.  **Baseline Config:** 
-    *   Installed **VMware Tools** for seamless clipboard sharing and better display resolution.
-    *   Renamed the PC to **`DC01`** (Standard naming convention for a Domain Controller).
-    *   Assigned a **Static IP** (`192.168.233.132`) and set DNS to `127.0.0.1`. 
-    *   *Why Static IP?* Because a Domain Controller is the DNS server for the network. If its IP changes, the whole network breaks!
+## 🛠️ Implementation Steps (Detailed Walkthrough)
 
-*(📸 Screenshots to add: VM Settings, OS Selection menu, Static IP configuration)*
+1.  **VM Provisioning & Hardware Allocation:**
+    *   Opened VMware Workstation and created a **Custom (Advanced)** Virtual Machine.
+    *   **Memory:** Allocated **4 GB (4096 MB)** RAM to ensure smooth performance of the Windows Server GUI.
+    *   **Disk:** Provisioned a **100 GB** virtual disk. 
+    *   *Pro-Tip:* Selected **"Split virtual disk into multiple files"** and left **"Allocate all disk space now"** unchecked. This creates a "Thin Provisioned" disk, meaning it will only take up actual space on my host PC as data is written, saving local storage.
+
+2.  **OS Installation & Bypassing the VMware Bug:**
+    *   **The Bug:** When selecting the Windows Server 2022 ISO in VMware's "Easy Install" mode, it threw an error: *"Windows cannot find the Microsoft Software License Terms."*
+    *   **The Fix:** Cancelled the wizard and created the VM using **"I will install the operating system later"** to bypass Easy Install. Manually attached the ISO via VM Settings.
+    *   At the boot screen, promptly pressed a key to *"Press any key to boot from CD or DVD"*.
+    *   **OS Selection:** Chose **Windows Server 2022 Datacenter Evaluation (Desktop Experience)**. 
+    *   *Why Desktop Experience?* It installs the Graphical User Interface (GUI), which is essential for visualizing AD tools, unlike the Server Core (command-line only) version.
+    *   Selected **Custom Installation** and installed the OS on the 100GB unallocated space.
+
+3.  **Baseline Configuration (Post-Installation):**
+    *   **Administrator Password:** Set a complex password (e.g., `Admin@123`) as Windows enforces password complexity by default.
+    *   **Installing VMware Tools:** Went to `VM > Install VMware Tools`. Opened the virtual CD drive, ran `setup64.exe`, and rebooted. 
+    *   *Why?* This enables seamless mouse integration, full-screen resolution, and host-to-guest clipboard sharing.
+    *   **Renaming the Server:** Opened Server Manager > Local Server > Changed the random computer name (e.g., WIN-XXXXX) to **`DC01`** and restarted.
+    *   **Static IP Assignment:** 
+        *   Navigated to Network Adapter Settings > IPv4 Properties.
+        *   Set IP: **`192.168.233.132`**, Subnet: `255.255.255.0`, Gateway: `192.168.233.2` (VMware NAT default).
+        *   Set Preferred DNS: **`127.0.0.1`** (Loopback).
+        *   *Why Static IP?* A Domain Controller acts as the DNS server for the network. If its IP changes dynamically, all domain clients will lose connection to the server.
+
+*(📸 Screenshots to add: VMware Disk Allocation screen, OS Selection menu (Datacenter Desktop Experience), Static IP Configuration window)*
