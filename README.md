@@ -18,5 +18,5 @@ Click on the links below to explore the detailed, conceptual breakdown of each p
     *Centralized Management: Restricting user environments across the network.*
 
 ---
-**Author:** ShadowRootSec
+**Author:** ShadowRootSec <br>
 **Note:** This project is entirely built on a local VMware setup with zero cloud costs.
