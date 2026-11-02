@@ -18,4 +18,4 @@ Click on the links below to view the detailed documentation for each phase of th
     *Creating and enforcing policies (e.g., blocking Control Panel) across the domain.*
 
 ---
-**Author:** ShadowRootSec
+**Author:** ShadowRoot
