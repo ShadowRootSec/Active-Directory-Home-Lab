@@ -16,6 +16,8 @@ Click on the links below to explore the detailed, conceptual breakdown of each p
     *The Magic of Centralized Login: DNS, Domain Join, and SSO.*
 5.  🔗 **[Phase 5: Enforcing Security with Group Policy (GPO)](./05-Group-Policy-GPO.md)**
     *Centralized Management: Restricting user environments across the network.*
+6.  🔗 **[Phase 6: Authentication Methods (Kerberos & NTLM)](./06-Authentication-Methods.md)**
+    *Understanding the core protocols: Ticket-based Kerberos vs. Challenge-Response NTLM.*
 
 ---
 **Author:** ShadowRootSec <br>
