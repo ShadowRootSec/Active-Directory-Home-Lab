@@ -18,6 +18,8 @@ Click on the links below to explore the detailed, conceptual breakdown of each p
     *Centralized Management: Restricting user environments across the network.*
 6.  🔗 **[Phase 6: Authentication Methods (Kerberos & NTLM)](./06-Authentication-Methods.md)**
     *Understanding the core protocols: Ticket-based Kerberos vs. Challenge-Response NTLM.*
+7.  🔗 **[Phase 7: Trees, Forests & Trusts](./07-Trees-Forests-Trusts.md)**
+    *Understanding large-scale AD architecture: multi-domain trees, forests, and cross-domain trust relationships.*
 
 ---
 **Author:** ShadowRootSec <br>
